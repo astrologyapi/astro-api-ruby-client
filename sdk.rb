@@ -1,9 +1,9 @@
 require 'net/http'
 require 'uri'
 
-class VRClient
+class AstrologyAPIClient
   
-  @@baseURL = "http://api.vedicrishiastro.com/v1/"
+  @@baseURL = "https://json.astrologyapi.com/v1/"
   def initialize(uid=nil,key=nil)
     @userID = uid
     @apiKey = key
@@ -21,8 +21,10 @@ class VRClient
     req = Net::HTTP::Post.new(url)
     req.basic_auth @userID, @apiKey
     req.set_form_data(data)
-    resp = Net::HTTP.new(url.host, url.port).start {|http| http.request(req) }
-    puts resp.body
+    res = Net::HTTP.start(url.hostname, url.port,:use_ssl => true) {|http|
+      http.request(req)
+    }
+    puts res.body
   end
 	  
   def packageHoroData(date, month, year, hour, minute, latitude, longitude, timezone)
@@ -47,6 +49,13 @@ class VRClient
     }
 	end
 	
+  def packageDailyHoroData(zodiacName,timezone)
+    return {
+      'zodiacName'=>zodiacName,
+      'timezone'=>timezone
+    }
+  end
+  
 	def packageMatchMakingData(maleBirthData, femaleBirthData)
 		mData = {
       'm_day'=> maleBirthData['date'],
@@ -85,6 +94,11 @@ class VRClient
 	
 	def numeroCall(resource, date, month, year, name)
 		data = self.packageNumeroData(date, month, year, name)
+		getResponse(resource,data)
+	end
+
+  def dailyHoroCall(resource, zodiacName,timezone)
+		data = self.packageDailyHoroData(zodiacName,timezone)
 		getResponse(resource,data)
 	end
 end
