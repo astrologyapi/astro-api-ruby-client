@@ -1,9 +1,9 @@
 require './sdk'
+require 'dotenv/load'
 
 
-
-userID = "<YourUserIdhere>";
-apiKey = "<YourApiKeyHere>";
+userID = ENV['ASTROLOGY_API_USER_ID']
+apiKey = ENV['ASTROLOGY_API_KEY']
 
 dateOfBirth = 25
 monthOfBirth = 12
