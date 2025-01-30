@@ -31,7 +31,7 @@ end
 #Endpoint and data for the PDF API
 pdfEndpoint = 'basic_horoscope_pdf'
 pdfReqData = {
-    'name' =>"Lokesh Kumar",
+    'name' =>"Your Name",
     'gender' =>  "male",
     'day' => 8,
     'month' =>  8,
@@ -40,7 +40,7 @@ pdfReqData = {
     'minute' => 46,
     'latitude' => 25.5940947,
     'longitude'=> 85.13756450000005,
-    'place' => "Patna, Bihar",
+    'place' => "Your Place",
     'tzone' => 5.5
   }
 
