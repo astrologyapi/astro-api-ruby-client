@@ -40,7 +40,7 @@ pdfReqData = {
     'minute' => 46,
     'latitude' => 25.5940947,
     'longitude'=> 85.13756450000005,
-    'place' => "Your Place",
+    'place' => "Place",
     'tzone' => 5.5
   }
 
